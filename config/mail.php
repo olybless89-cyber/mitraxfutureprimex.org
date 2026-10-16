@@ -36,7 +36,7 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'hyip.smartexpertfx.com/'),
+            'host' => env('MAIL_HOST', 'smtp.mitraxfutureprimex.org'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
@@ -84,8 +84,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'support@hyip.smartexpertfx.com'),
-        'name' => env('MAIL_FROM_NAME', 'Bitcoin Investment'),
+        'address' => env('MAIL_FROM_ADDRESS', 'support@mitraxfutureprimex.org'),
+        'name' => env('MAIL_FROM_NAME', 'Mitrax Future Primex'),
     ],
 
     /*

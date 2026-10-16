@@ -58,7 +58,7 @@ if (Auth::check() && Auth::user()->dashboard_style == "light") {
 	@show
 	
 </head>
-<body  style="background:url(https://metacryptofx.com/images/auth.jpg) !important">
+<body  style="background:url({{ asset('public/auth.jpg') }}) !important">
     <div id="app">
         
         <!--/PayPal-->

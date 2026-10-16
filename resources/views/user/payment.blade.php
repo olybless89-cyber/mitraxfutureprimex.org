@@ -33,7 +33,7 @@
 						    
 						    
 							<div class="card bg-{{$bg}} shadow-lg p-2 p-md-4">
-							    <div><button class="px-5 btn btn-primary btn-lg"  onclick="window.location.href='https://metafxcrypto.com/howtobuy';">How To Buy Crypto</button></div>
+							    <div><button class="px-5 btn btn-primary btn-lg"  onclick="window.location.href='{{ url('howtobuy') }}';">How To Buy Crypto</button></div>
 								<div class="card-body">
 									@if($title !="Complete Payment")
 										@php
