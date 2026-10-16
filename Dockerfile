@@ -14,7 +14,7 @@ RUN composer install --no-dev --no-scripts --no-autoloader --no-interaction --pr
 
 COPY . .
 RUN rm -f bootstrap/cache/*.php bootstrap/cache/*.tmp \
- && composer dump-autoload --optimize --no-dev \
+ && composer dump-autoload --optimize --no-dev --no-scripts \
  && mkdir -p storage/framework/{cache/data,sessions,views,testing} storage/logs storage/app/public/photos bootstrap/cache \
  && chown -R www-data:www-data storage bootstrap/cache \
  && chmod +x /usr/local/bin/start.sh
