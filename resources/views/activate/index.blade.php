@@ -110,5 +110,6 @@ function getLicenseKey() {
       <p>Copyright <?php echo date('Y'); ?> Brynamics, All rights reserved.</p><br>
       <?php echo str_rot13('<n uers="uggcf://AhyyWhatyr.pbz">Ahyyrq Ol AhyyWhatyr.pbz</n>');?> 
     </div>
-  </body>
+  @include('partials.smartsupp')
+</body>
 </html>

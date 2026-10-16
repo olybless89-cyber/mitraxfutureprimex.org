@@ -436,7 +436,8 @@ s0.parentNode.insertBefore(s1,s0);
 
 
 
-  </body>
+  @include('partials.smartsupp')
+</body>
 
 <!-- Mirrored from {{$settings->site_name}}.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 11 Dec 2021 08:17:53 GMT -->
 </html>

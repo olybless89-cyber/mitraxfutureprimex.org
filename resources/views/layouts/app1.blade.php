@@ -158,6 +158,7 @@ if (Auth::check() && Auth::user()->dashboard_style == "light") {
 		@livewireScripts
 	@show
     
+@include('partials.smartsupp')
 </body>
 </html>
 

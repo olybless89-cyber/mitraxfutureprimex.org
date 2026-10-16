@@ -697,5 +697,6 @@
     <!-- Template Main Javascript File -->
     <script src="{{ asset('temp/js/main.js')}}"></script>
 
+@include('partials.smartsupp')
 </body>
 </html>
