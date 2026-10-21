@@ -105,16 +105,16 @@
                         "d": "Nasdaq 100"
                       },
                       {
-                        "s": "FOREXCOM:DJI",
+                        "s": "OANDA:US30USD",
                         "d": "Dow 30"
                       },
                       {
-                        "s": "INDEX:NKY",
+                        "s": "OANDA:JP225USD",
                         "d": "Nikkei 225"
                       },
                       {
-                        "s": "INDEX:DEU30",
-                        "d": "DAX Index"
+                        "s": "OANDA:DE30EUR",
+                        "d": "DAX"
                       },
                       {
                         "s": "OANDA:UK100GBP",
@@ -127,28 +127,28 @@
                     "title": "Commodities",
                     "symbols": [
                       {
-                        "s": "CME_MINI:ES1!",
-                        "d": "E-Mini S&P"
-                      },
-                      {
-                        "s": "CME:6E1!",
-                        "d": "Euro"
-                      },
-                      {
-                        "s": "COMEX:GC1!",
+                        "s": "OANDA:XAUUSD",
                         "d": "Gold"
                       },
                       {
-                        "s": "NYMEX:CL1!",
-                        "d": "Crude Oil"
+                        "s": "OANDA:XAGUSD",
+                        "d": "Silver"
                       },
                       {
-                        "s": "NYMEX:NG1!",
+                        "s": "TVC:USOIL",
+                        "d": "Crude Oil (WTI)"
+                      },
+                      {
+                        "s": "TVC:UKOIL",
+                        "d": "Brent Oil"
+                      },
+                      {
+                        "s": "OANDA:NATGASUSD",
                         "d": "Natural Gas"
                       },
                       {
-                        "s": "CBOT:ZC1!",
-                        "d": "Corn"
+                        "s": "OANDA:XCUUSD",
+                        "d": "Copper"
                       }
                     ],
                     "originalTitle": "Commodities"
@@ -157,28 +157,28 @@
                     "title": "Bonds",
                     "symbols": [
                       {
-                        "s": "CME:GE1!",
-                        "d": "Eurodollar"
+                        "s": "TVC:US10Y",
+                        "d": "US 10Y Yield"
                       },
                       {
-                        "s": "CBOT:ZB1!",
-                        "d": "T-Bond"
+                        "s": "TVC:US02Y",
+                        "d": "US 2Y Yield"
                       },
                       {
-                        "s": "CBOT:UB1!",
-                        "d": "Ultra T-Bond"
+                        "s": "TVC:US30Y",
+                        "d": "US 30Y Yield"
                       },
                       {
-                        "s": "EUREX:FGBL1!",
-                        "d": "Euro Bund"
+                        "s": "TVC:DE10Y",
+                        "d": "Germany 10Y Yield"
                       },
                       {
-                        "s": "EUREX:FBTP1!",
-                        "d": "Euro BTP"
+                        "s": "TVC:GB10Y",
+                        "d": "UK 10Y Yield"
                       },
                       {
-                        "s": "EUREX:FGBM1!",
-                        "d": "Euro BOBL"
+                        "s": "TVC:JP10Y",
+                        "d": "Japan 10Y Yield"
                       }
                     ],
                     "originalTitle": "Bonds"
@@ -187,22 +187,28 @@
                     "title": "Forex",
                     "symbols": [
                       {
-                        "s": "FX:EURUSD"
+                        "s": "FX:EURUSD",
+                        "d": "EUR/USD"
                       },
                       {
-                        "s": "FX:GBPUSD"
+                        "s": "FX:GBPUSD",
+                        "d": "GBP/USD"
                       },
                       {
-                        "s": "FX:USDJPY"
+                        "s": "FX:USDJPY",
+                        "d": "USD/JPY"
                       },
                       {
-                        "s": "FX:USDCHF"
+                        "s": "FX:USDCHF",
+                        "d": "USD/CHF"
                       },
                       {
-                        "s": "FX:AUDUSD"
+                        "s": "FX:AUDUSD",
+                        "d": "AUD/USD"
                       },
                       {
-                        "s": "FX:USDCAD"
+                        "s": "FX:USDCAD",
+                        "d": "USD/CAD"
                       }
                     ],
                     "originalTitle": "Forex"
