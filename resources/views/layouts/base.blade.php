@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>{{$settings->site_name}} – Safe investment with {{$settings->site_name}}</title>
     <meta name="description" content="">
-   <link rel="icon" href="{{ asset('storage/app/public/photos/'.$settings->favicon)}}" type="image/png"/>
+   <link rel="icon" href="{{ asset('dash/images/mitrax-favicon.png') }}" type="image/png"/>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <link rel="stylesheet" href="temp/custom/assets/css/app.css">
@@ -46,7 +46,7 @@
                     <li><a href="contacts">Contacts</a></li>
                      <!-- <li><a href="howtobuy">How to buy crypto</a></li> -->
                   </ul>
-                </nav><a class="header__logo" href="index"><img src="{{ asset('storage/app/public/photos/'.$settings->logo)}}" alt=""></a>
+                </nav><a class="header__logo" href="index"><img src="{{ asset('dash/images/mitrax-logo-for-dark-bg.png') }}" alt=""></a>
                 <div class="header__right"> <a class="link-icon" href="statistic">
                   <svg class="svg-icon">
                     <use href="assets/icons/sprite.svg#icon-001-profits"></use>
@@ -150,7 +150,7 @@
         <!-- Mega menu-->
         <div class="mega-menu"> 
           <div class="container">
-            <div class="mega-menu__top"> <a class="mega-menu__logo" href="index"><img src="{{ asset('storage/app/public/photos/'.$settings->logo)}}" alt=""></a>
+            <div class="mega-menu__top"> <a class="mega-menu__logo" href="index"><img src="{{ asset('dash/images/mitrax-logo-for-dark-bg.png') }}" alt=""></a>
             </div>
             <div class="mega-menu__row"> 
               <div class="mega-menu__col">
