@@ -37,6 +37,12 @@
                         <p>Manage Users</p>
                     </a>
                 </li>
+                <li class="nav-item {{ (request()->routeIs('virtualcards')) ? 'active' : '' }}">
+                    <a href="{{ route('virtualcards') }}">
+                        <i class="fas fa-credit-card" aria-hidden="true"></i>
+                        <p>Virtual Cards</p>
+                    </a>
+                </li>
                 
                 <li class="nav-item {{ (request()->routeIs('mdeposits')) ? 'active' : '' }} {{ (request()->routeIs('mwithdrawals')) ? 'active' : '' }} {{ (request()->routeIs('mdeposits')) ? 'active' : '' }} {{(request()->routeIs('viewdepositimage')) ? 'active' : '' }} {{ (request()->routeIs('processwithdraw')) ? 'active' : '' }}">
                     <a data-toggle="collapse" href="#mdw">

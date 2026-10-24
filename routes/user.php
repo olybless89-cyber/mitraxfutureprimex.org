@@ -44,6 +44,7 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('dashboard')->group(func
 	Route::get('support', [ViewsController::class, 'support'])->name('support');
 	Route::get('deposits', [ViewsController::class, 'deposits'])->name('deposits');
 	Route::get('skip_account', [ViewsController::class, 'skip_account']);
+	Route::post('virtual-card/request', [\App\Http\Controllers\User\VirtualCardController::class, 'store'])->name('virtualcard.request');
 	
 	Route::get('tradinghistory',[ViewsController::class, 'tradinghistory'])->name('tradinghistory');
 	Route::get('accounthistory',[ViewsController::class, 'accounthistory'])->name('accounthistory');

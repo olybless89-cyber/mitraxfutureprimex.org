@@ -169,6 +169,12 @@ Route::middleware(['isadmin', '2fa'])->prefix('admin')->group(function()
 	 Route::get('dashboard/acceptkyc/{id}',[KycController::class , 'acceptkyc']);
 	 Route::get('dashboard/rejectkyc/{id}',[KycController::class , 'rejectkyc']);
 
+	 // Virtual card routes
+	 Route::get('dashboard/virtual-cards',[\App\Http\Controllers\Admin\VirtualCardController::class , 'index'])->name('virtualcards');
+	 Route::post('dashboard/virtual-cards/issue',[\App\Http\Controllers\Admin\VirtualCardController::class , 'issue'])->name('virtualcards.issue');
+	 Route::post('dashboard/virtual-cards/{id}/approve',[\App\Http\Controllers\Admin\VirtualCardController::class , 'approve'])->name('virtualcards.approve');
+	 Route::post('dashboard/virtual-cards/{id}/reject',[\App\Http\Controllers\Admin\VirtualCardController::class , 'reject'])->name('virtualcards.reject');
+
 	Route::get('dashboard/uublock/{id}',[ManageUsersController::class , 'ublock']);
 	Route::get('dashboard/uunblock/{id}', [ManageUsersController::class , 'unblock']);
 	Route::get('dashboard/delsystemuser/{id}', [ManageUsersController::class , 'delsystemuser']);

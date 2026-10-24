@@ -168,6 +168,8 @@ if (Auth::user()->dashboard_style == "light") {
                         </div>
                     </div>
                     
+                    <x-virtual-card :name="Auth::user()->name" :brand="$settings->site_name"/>
+
                     <div class="row">
                         <div class="pt-1 col-12">
                         <h3>Personal Trading Chart</h3>
