@@ -187,10 +187,11 @@ class HomeController extends Controller
 
       public function aboutonlinetrade()
       {
+        $settings = Settings::where('id', '1')->first();
+
         return view('admin.about')
           ->with(array(
-          'title'=>'About Onlinetrader',
-          
+          'title'=>'About ' . ($settings->site_name ?? config('app.name')),
           ));
       }
       

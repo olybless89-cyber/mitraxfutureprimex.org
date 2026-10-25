@@ -15,6 +15,27 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <link rel="stylesheet" href="temp/custom/assets/css/app.css">
+    <style>
+      /* Brand logo pinned to the top-left of the site header and the slide-out menu */
+      .header__row .header__logo,
+      .mega-menu__top .mega-menu__logo {
+        margin: 0 auto 0 0;
+        max-width: 118px;
+        background: #fff;
+        border-radius: 8px;
+        padding: 6px 8px;
+        line-height: 0;
+      }
+      .mega-menu__top {
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+      }
+      @media screen and (max-width: 767px) {
+        .header__row .header__logo,
+        .mega-menu__top .mega-menu__logo { max-width: 96px; padding: 5px 6px; }
+      }
+    </style>
     <link rel="stylesheet" href="temp/custom/style.css">
     <link rel="stylesheet" href="temp/custom/jquery.fancybox.min.css">
     
@@ -37,6 +58,7 @@
               
             <div class="container"> 
               <div class="header__row">
+                <a class="header__logo" href="index"><img src="{{ asset('dash/images/mitrax-logo-for-dark-bg.png') }}" alt="{{ $settings->site_name }}"></a>
                 <nav class="header__nav"> 
                   <ul>
                     <li class=" is-active"><a href="index">Home page </a></li>
@@ -46,7 +68,7 @@
                     <li><a href="contacts">Contacts</a></li>
                      <!-- <li><a href="howtobuy">How to buy crypto</a></li> -->
                   </ul>
-                </nav><a class="header__logo" href="index"><img src="{{ asset('dash/images/mitrax-logo-for-dark-bg.png') }}" alt=""></a>
+                </nav>
                 <div class="header__right"> <a class="link-icon" href="statistic">
                   <svg class="svg-icon">
                     <use href="assets/icons/sprite.svg#icon-001-profits"></use>
