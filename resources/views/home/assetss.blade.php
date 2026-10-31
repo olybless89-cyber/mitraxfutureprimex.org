@@ -22,7 +22,6 @@
         <link href="{{ asset ('temp/lib/aos/aos.css')}}" rel="stylesheet">
         <link href="{{ asset ('temp/lib/venobox/venobox.css')}}" rel="stylesheet">
         <link href="{{ asset ('temp/lib/icofont/icofont.min.css')}}" rel="stylesheet">
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <link href="{{asset('temp/css/frontend_style_blue.css')}}" rel="stylesheet">
         
         <!-- JavaScript Libraries -->
