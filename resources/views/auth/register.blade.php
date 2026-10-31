@@ -161,11 +161,6 @@
                                         </div>
                                     </div>
                                     @endif
-                                    
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endif
                                     @if($terms->useterms =='yes')
                                         <div class="col-md-12">
                                             <div class="form-group">
