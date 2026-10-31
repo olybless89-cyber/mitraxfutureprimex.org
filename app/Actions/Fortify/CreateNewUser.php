@@ -27,24 +27,13 @@ class CreateNewUser implements CreatesNewUsers
     {
         $settings=Settings::where('id','1')->first();
         $request = request();
-        if ($settings->captcha == "true") {
-            Validator::make($input, [
-                'name' => ['required', 'string', 'max:255'],
-                'username'=> ['required', 'unique:users,username'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => $this->passwordRules(),
-                'g-recaptcha-response' => 'required|captcha',
-                'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
-            ])->validate();
-        } else {
-            Validator::make($input, [
-                'name' => ['required', 'string', 'max:255'],
-                'username'=> ['required', 'unique:users,username'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => $this->passwordRules(),
-                'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
-            ])->validate();
-        }
+        Validator::make($input, [
+            'name' => ['required', 'string', 'max:255'],
+            'username'=> ['required', 'unique:users,username'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => $this->passwordRules(),
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
+        ])->validate();
         
         
         if(session('ref_by')) {

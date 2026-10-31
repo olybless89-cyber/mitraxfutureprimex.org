@@ -162,17 +162,6 @@
                                     </div>
                                     @endif
                                     
-                                    @if($settings->captcha == "true")
-                                    <div class="col-lg-12">
-                                        <div class="form-group  {{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-                                            <label>Captcha<span class="text-danger">*</span></label>
-                                            <div class="position-relative">
-                                                {!! NoCaptcha::display() !!}
-                                                @if ($errors->has('g-recaptcha-response'))
-                                                    <span class="help-block">
-                                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                                    </span>
-                                                @endif
                                             </div>
                                         </div>
                                     </div>
