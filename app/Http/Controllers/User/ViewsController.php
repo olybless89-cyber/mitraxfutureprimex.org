@@ -66,7 +66,7 @@ class ViewsController extends Controller
                 if ($settings->signup_bonus > 0 and !empty($settings->signup_bonus)) {
                     //create history
                     Tp_Transaction::create([
-                        'user' => Auth::user()->id,
+                        'user' => $usf->id,
                         'plan' => "SignUp Bonus",
                         'amount'=>$settings->signup_bonus,
                         'type'=>"Bonus",

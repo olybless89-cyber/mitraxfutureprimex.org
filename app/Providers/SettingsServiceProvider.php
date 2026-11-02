@@ -29,8 +29,6 @@ class SettingsServiceProvider extends ServiceProvider
         $paystack = Paystack::where('id', '1')->first();
         // Set configuration values at run time
         config([
-            'captcha.secret'=> $settings->capt_secret,
-            'captcha.sitekey'=> $settings->capt_sitekey,
             'services.google.client_id'=>  $settings->google_id,
             'services.google.client_secret'=>  $settings->google_secret,
             'services.google.redirect'=>  $settings->google_redirect,

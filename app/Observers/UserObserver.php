@@ -18,7 +18,7 @@ class UserObserver
         //
         $settings = Settings::where('id', 1)->first();
 
-        if ($settings->enable_verification == 'false') {
+        if ($settings->enable_verification != 'true') {
             $user->email_verified_at = \Carbon\Carbon::now();
             $user->save();
         }

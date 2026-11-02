@@ -3,15 +3,12 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
-use App\Models\Settings;
-use App\Models\Agent;
 use App\Models\CryptoAccount;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
-use Illuminate\Support\Facades\DB;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -25,57 +22,50 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        $settings=Settings::where('id','1')->first();
-        $request = request();
-        if ($settings->captcha == "true") {
-            Validator::make($input, [
-                'name' => ['required', 'string', 'max:255'],
-                'username'=> ['required', 'unique:users,username'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => $this->passwordRules(),
-                'g-recaptcha-response' => 'required|captcha',
-                'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
-            ])->validate();
-        } else {
-            Validator::make($input, [
-                'name' => ['required', 'string', 'max:255'],
-                'username'=> ['required', 'unique:users,username'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => $this->passwordRules(),
-                'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
-            ])->validate();
-        }
-        
-        
-        if(session('ref_by')) {
-            $ref_by = session('ref_by');
-            $user= User::where('username', $ref_by)->first();
-            $ref_by_id = $user->id;
-        }else {
-            if (!empty($input['ref_by'])) {
-                $sponsor = User::where('username', $input['ref_by'])->first();
-                $ref_by_id = $sponsor->id;
-            }else {
-                $ref_by_id = NULL;
-            }
-        }
+        // Pasted or auto-filled usernames can carry spaces; referral links break on them.
+        $input['username'] = preg_replace('/\s+/', '', (string) ($input['username'] ?? ''));
 
-        $user = User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'phone' => $input['phone'],
-            'username'=> $input['username'],
-            'country' => $input['country'],
-            'ref_by' => $ref_by_id,
-            'status' =>'active',
-            'password' => Hash::make($input['password']),
-        ]);
+        Validator::make($input, [
+            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'alpha_dash', 'max:50', 'unique:users,username'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'string', 'max:30'],
+            'country' => ['required', 'string', 'max:100'],
+            'password' => $this->passwordRules(),
+            'ref_by' => ['nullable', 'string', 'exists:users,username'],
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
+        ], [
+            'username.alpha_dash' => 'Your username can only contain letters, numbers, dashes and underscores.',
+            'username.unique' => 'That username is taken, please choose another one.',
+            'email.unique' => 'An account with this email already exists. Please log in instead.',
+            'ref_by.exists' => 'We could not find that Referral ID. Check it or leave the field empty.',
+        ])->validate();
 
-        $cryptoaccnt = new CryptoAccount();
-        $cryptoaccnt->user_id = $user->id;
-        $cryptoaccnt->save();
-        
-        $request->session()->forget('ref_by');
+        $referrer = session('ref_by') ?: ($input['ref_by'] ?? null);
+        $ref_by_id = $referrer ? optional(User::where('username', $referrer)->first())->id : null;
+
+        // All or nothing: a half-created account would lock the person out with "email taken".
+        $user = DB::transaction(function () use ($input, $ref_by_id) {
+            $user = User::create([
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'phone' => $input['phone'],
+                'username' => $input['username'],
+                'country' => $input['country'],
+                'ref_by' => $ref_by_id,
+                'status' => 'active',
+                'password' => Hash::make($input['password']),
+            ]);
+
+            $cryptoaccnt = new CryptoAccount();
+            $cryptoaccnt->user_id = $user->id;
+            $cryptoaccnt->save();
+
+            return $user;
+        });
+
+        session()->forget('ref_by');
+
         return $user;
     }
 }

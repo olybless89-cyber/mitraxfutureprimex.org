@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 
-@section('title', 'Creaet Account')
+@section('title', 'Create Account')
 
 @section('styles')
 @parent
@@ -29,7 +29,7 @@
                      <div class=" shadow  login-page roundedd border-1 ">
                         <div class="card-body">
                             <h4 class="text-center card-title" style="color:#69e2b0">Create an Account</h4>
-                             <p class="text-{{$text}}" style="color:#fff">{{ date('l jS \of F Y h:i:s A') }}</p>
+                             <p style="color:#fff">{{ date('l jS \of F Y h:i:s A') }}</p>
                             <form method="POST" action="{{ route('register') }}"  class="mt-4 login-form">
                                  @csrf
                                 <div class="row">
@@ -38,7 +38,7 @@
                                             <label  style="color:#69e2b0 !important">UserName <span class="text-danger">*</span></label>
                                             <div class="position-relative">
                                                 <i data-feather="user" class="fea icon-sm icons"></i>
-                                                <input type="text" id="input1" class="pl-5 form-control"  name="username" id="input1" placeholder="Enter Unique Username" required>
+                                                <input type="text" id="input1" class="pl-5 form-control"  name="username" value="{{ old('username') }}" placeholder="Enter Unique Username" maxlength="50" autocomplete="username" required>
                                                 
                                                 @if ($errors->has('username'))
                                                 <small class="text-danger">{{ $errors->first('username') }}</small>
@@ -84,7 +84,7 @@
                                             <label style="color:#69e2b0 !important">Phone Number <span class="text-danger">*</span></label>
                                             <div class="position-relative">
                                                 <i data-feather="phone" class="fea icon-sm icons"></i>
-                                                <input type="phone" class="pl-5 form-control" name="phone" value="{{ old('phone') }}" id="phone" placeholder="Enter Phone number" required>
+                                                <input type="tel" class="pl-5 form-control" name="phone" value="{{ old('phone') }}" id="phone" placeholder="Enter Phone number" required>
                                                 @if ($errors->has('phone'))
                                                 <small class="text-danger">{{ $errors->first('phone') }}</small>
                                                 @endif
@@ -99,7 +99,7 @@
                                             <label style="color:#69e2b0 !important">Password <span class="text-danger">*</span></label>
                                             <div class="position-relative">
                                                 <i data-feather="key" class="fea icon-sm icons"></i>
-                                                <input type="password" class="pl-5 form-control" name="password" id="password" placeholder="Enter Password" required>
+                                                <input type="password" class="pl-5 form-control" name="password" id="password" placeholder="At least 8 characters" minlength="8" autocomplete="new-password" required>
                                                 @if ($errors->has('password'))
                                                 <small class="text-danger">{{ $errors->first('password') }}</small>
                                                 @endif
@@ -114,10 +114,7 @@
                                             <label style="color:#69e2b0 !important">Confirm Password <span class="text-danger">*</span></label>
                                             <div class="position-relative">
                                                 <i data-feather="key" class="fea icon-sm icons"></i>
-                                                <input type="password" class="pl-5 form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" id="confirm-password" placeholder="Confirm Password" required>
-                                                @if ($errors->has('password'))
-                                                <small class="text-danger">{{ $errors->first('password') }}</small>
-                                                @endif
+                                                <input type="password" class="pl-5 form-control" name="password_confirmation" id="confirm-password" placeholder="Confirm Password" minlength="8" autocomplete="new-password" required>
                                                 
                                             </div>
                                         </div>
@@ -130,7 +127,7 @@
                                             <div class="position-relative">
                                                 <i data-feather="map-pin" class="fea icon-sm icons"></i>
                                                 <select class="pl-5 form-control" name="country" id="country" required>
-                                                    <option selected disabled>Choose Country</option>
+                                                    <option value="" selected disabled>Choose Country</option>
                                                         @include('auth.countries')
                                                 </select>
                                             </div>
@@ -143,7 +140,7 @@
                                     @if(Session::has('ref_by'))
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label style="color:#69e2b0 !important">Referral ID <span class="text-danger">*</span></label>
+                                            <label style="color:#69e2b0 !important">Referral ID</label>
                                             <div class="position-relative">
                                                 <i data-feather="user" class="fea icon-sm icons"></i>
                                                 <input type="text" class="pl-5 form-control"  value="{{session('ref_by')}}" name="ref_by" placeholder="optional referral id" readonly>
@@ -153,25 +150,12 @@
                                     @else
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label style="color:#69e2b0 !important">Referral ID <span class="text-danger">*</span></label>
+                                            <label style="color:#69e2b0 !important">Referral ID (optional)</label>
                                             <div class="position-relative">
                                                 <i data-feather="user" class="fea icon-sm icons"></i>
-                                                <input type="text" class="pl-5 form-control"  name="ref_by" placeholder="optional referral id">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endif
-                                    
-                                    @if($settings->captcha == "true")
-                                    <div class="col-lg-12">
-                                        <div class="form-group  {{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-                                            <label>Captcha<span class="text-danger">*</span></label>
-                                            <div class="position-relative">
-                                                {!! NoCaptcha::display() !!}
-                                                @if ($errors->has('g-recaptcha-response'))
-                                                    <span class="help-block">
-                                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                                    </span>
+                                                <input type="text" class="pl-5 form-control"  name="ref_by" value="{{ old('ref_by') }}" placeholder="optional referral id">
+                                                @if ($errors->has('ref_by'))
+                                                <small class="text-danger">{{ $errors->first('ref_by') }}</small>
                                                 @endif
                                             </div>
                                         </div>
@@ -192,7 +176,7 @@
                                     <!--end col-->
 
                                     <div class="mb-0 col-lg-12">
-                                        <button class="btn btn-primary btn-block pad" style="background-color:#05803a !important"type="submit">Register</button>
+                                        <button class="btn btn-primary btn-block pad" style="background-color:#05803a !important" type="submit" id="register-btn">Register</button>
                                     </div>
                                     <!--end col-->
 
@@ -247,6 +231,16 @@
 <script>
     $('#input1').on('keypress', function(e) {
         return e.which !== 32;
+    }).on('input', function() {
+        this.value = this.value.replace(/\s+/g, '');
+    });
+
+    // Keep the chosen country after a validation error
+    $('#country').val(@json(old('country', '')) || '');
+
+    // One tap, one account
+    $('.login-form').on('submit', function() {
+        $('#register-btn').prop('disabled', true).text('Creating your account...');
     });
 </script>
 @endsection

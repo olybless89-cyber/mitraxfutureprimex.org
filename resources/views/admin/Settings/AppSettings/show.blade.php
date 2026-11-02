@@ -46,7 +46,7 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 										<a href="#pref" class="nav-link" data-toggle="tab">Preference</a>
 									</li>
 									<li class="nav-item">
-										<a href="#email" class="nav-link" data-toggle="tab">Email/Google Login-Captcha</a>
+										<a href="#email" class="nav-link" data-toggle="tab">Email/Google Login</a>
 									</li>
 									{{-- <li class="nav-item">
 										<a href="#social" class="nav-link" data-toggle="tab">Google Login</a>
