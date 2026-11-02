@@ -124,7 +124,6 @@ class AppSettingsController extends Controller
             'enable_verification'=>$request['enail_verify'],
             'google_translate'=>$request['googlet'],
             'enable_kyc' =>$request['enable_kyc'],
-            'captcha' => $request['captcha'],
             'enable_with' => $request['withdraw'],
             'enable_social_login' => $request['social'],
             'enable_annoc'=>$request['annouc'],
@@ -148,8 +147,6 @@ class AppSettingsController extends Controller
             'google_id'=> $request['google_id'],
             'google_secret'=>$request['google_secret'],
             'google_redirect'=>$request['google_redirect'],
-            'capt_secret'=>$request['capt_secret'],
-            'capt_sitekey'=>$request['capt_sitekey'],
         ]);
         return response()->json(['status' => 200, 'success' => 'Settings Saved successfully']);
         //return redirect()->back()->with('message', 'Action Sucessful');

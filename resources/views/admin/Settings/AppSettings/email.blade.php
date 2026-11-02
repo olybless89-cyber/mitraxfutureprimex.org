@@ -76,23 +76,7 @@
                     <small class="text-{{$text}}">Set this to your Valid OAuth Redirect URI in console.cloud.google.com. Be sure to replace  </small>
                 </div>
             </div>
-            <div class="mt-4 form-row">
-                <div class="col-md-12">
-                    <h4>Google Captcha Credentials</h4>
-                    <hr>
-                </div>
-            </div>
             <div class=" form-row">
-                <div class="form-group col-md-6">
-                    <h5 class="text-{{$text}}">Captcha Secret</h5>
-                    <input type="text" name="capt_secret" class="form-control bg-{{$bg}} text-{{$text}}" value="{{$settings->capt_secret}}">
-                    <small class="text-{{$text}}"> From https://www.google.com/recaptcha/admin/create  </small>
-                </div>
-                <div class="form-group col-md-6">
-                    <h5 class="text-{{$text}}">Captcha Site-Key</h5>
-                    <input type="text" name="capt_sitekey" class="form-control bg-{{$bg}} text-{{$text}}" value="{{$settings->capt_sitekey}}">
-                    <small class="text-{{$text}}"> From https://www.google.com/recaptcha/admin/create</small>
-                </div>
                 <div class="form-group col-md-12">
                     <input type="submit" class="px-5 btn btn-primary btn-lg" value="Save">
                 </div>

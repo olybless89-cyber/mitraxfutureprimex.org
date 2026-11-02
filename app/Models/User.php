@@ -31,7 +31,14 @@ class User extends Authenticatable implements MustVerifyEmail
         $settings = Settings::where('id', 1)->first();
 
         if ($settings->enable_verification == 'true') {
-            $this->notify(new VerifyEmail);
+            try {
+                $this->notify(new VerifyEmail);
+            } catch (\Throwable $e) {
+                // A mail outage must never break sign-up: log it and let the person in,
+                // otherwise they sit on the verify page waiting for a link that never comes.
+                report($e);
+                $this->markEmailAsVerified();
+            }
         }
         
     }
