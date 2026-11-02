@@ -9,7 +9,6 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
-        "anhskohbo/no-captcha": "^3.3",
         "bitpay/key-utils": "~1.0",
         "bitpay/sdk": "^5.0",
         "fideloper/proxy": "^4.4",

@@ -81,23 +81,6 @@
                     
                 </div>
             
-                <div class="mt-4 col-md-6">
-                    <h5 class="text-{{$text}}">Google ReCaptcha:</h5>
-                    <div class="selectgroup">
-                        <label class="selectgroup-item">
-                            <input type="radio" name="captcha" id="captcha" value="true" class="selectgroup-input" checked="">
-                            <span class="selectgroup-button">On</span>
-                        </label>
-                        <label class="selectgroup-item">
-                            <input type="radio" name="captcha" id="captchaoff" value="false" class="selectgroup-input">
-                            <span class="selectgroup-button">Off</span>
-                        </label>
-                    </div>
-                    <div>
-                       <small class="text-{{$text}}">if turned on, Users will need to pass the google recaptcha challenge upon registration, also please see how to set up google recpatcha on your website before you can use it. <a href="https://doc.onlinetrade.brynamics.xyz/details/how-to-add-google-recaptcha-" target="_blank">See how</a></small> 
-                    </div>
-                    
-                </div>
 
                 <div class="mt-4 col-md-6">
                     <h5 class="text-{{$text}}">Translation</h5>
@@ -233,11 +216,6 @@
         <script>document.getElementById("withdrawoff").checked= true;</script>
     @endif
 
-    @if($settings->captcha=='true')
-        <script>document.getElementById("captcha").checked= true;</script>
-        @else
-        <script>document.getElementById("captchaoff").checked= true;</script>
-    @endif
     @if($settings->enable_social_login=='yes')
     <script>document.getElementById("social").checked= true;</script>
     @else

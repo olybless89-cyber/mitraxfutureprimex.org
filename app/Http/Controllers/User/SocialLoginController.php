@@ -70,8 +70,7 @@ class SocialLoginController extends Controller
             
             if(session('ref_by')) {
                 $ref_by = session('ref_by');
-                $user= User::where('username', $ref_by)->first();
-                $ref_by_id = $user->id;
+                $ref_by_id = optional(User::where('username', $ref_by)->first())->id;
                 
             }else {
                 $ref_by_id = NULL;
@@ -89,7 +88,7 @@ class SocialLoginController extends Controller
                 'password' => Hash::make($password),
             ]);
             $cryptoaccnt = new CryptoAccount();
-            $cryptoaccnt->user_id = $user->id;
+            $cryptoaccnt->user_id = $newUser->id;
             $cryptoaccnt->save();
 
             Auth::login($newUser);
@@ -97,7 +96,11 @@ class SocialLoginController extends Controller
             $objDemo->password = $password;
             $objDemo->sender = "$settings->site_name";
             $objDemo->contact_email = $settings->contact_email;
-            Mail::to($userSocial->getEmail())->send(new NewRegistration($objDemo));
+            try {
+                Mail::to($userSocial->getEmail())->send(new NewRegistration($objDemo));
+            } catch (\Throwable $e) {
+                report($e);
+            }
 
             $request->session()->forget('ref_by');
             return redirect()->route('dashboard');
