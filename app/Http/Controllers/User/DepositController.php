@@ -179,12 +179,15 @@ class DepositController extends Controller
     public function savedeposit(Request $request){
 
         //dd($request['paymethd_method']);
+        // Proof of payment is no longer collected; the amount comes from the payment page.
         $this->validate($request, [
-            'proof' => 'image|mimes:jpg,jpeg,png|max:1000',
+            'amount' => 'required|numeric|min:1',
+            'paymethd_method' => 'required|string|max:191',
         ]);
         
         $settings = Settings::where('id', '=', '1')->first();
         $strtxt = $this->RandomStringGenerator(6);
+        $proofname = null;
 
         if($request->hasfile('proof'))
         {
@@ -237,14 +240,22 @@ class DepositController extends Controller
         $objDemo->sender = $settings->site_name;
         $objDemo->date = \Carbon\Carbon::Now();
         $objDemo->subject ="Successful Deposit";
-        Mail::bcc($settings->contact_email)->send(new NewNotification($objDemo));
+        try {
+            Mail::bcc($settings->contact_email)->send(new NewNotification($objDemo));
+        } catch (\Throwable $e) {
+            report($e);
+        }
 
         $objDemou = new \stdClass();
         $objDemou->message = "This is to inform you of a successfull deposit of $settings->currency $request->amount, that just occured on your account. please wait while we process this transaction, you will receive a notification of your transaction status.";
         $objDemou->sender = $settings->site_name;
         $objDemou->date = \Carbon\Carbon::Now();
         $objDemou->subject ="Successful Deposit";
-        Mail::bcc($user->email)->send(new NewNotification($objDemou));
+        try {
+            Mail::bcc($user->email)->send(new NewNotification($objDemou));
+        } catch (\Throwable $e) {
+            report($e);
+        }
 
         // Kill the session variables
         $request->session()->forget('payment_mode');

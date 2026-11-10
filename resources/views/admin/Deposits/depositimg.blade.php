@@ -26,7 +26,9 @@ if (Auth('admin')->User()->dashboard_style  == "light") {
                     <x-success-alert/>
                     <div class="mb-5 row">
                         <div class="col-lg-8 offset-lg-2 card p-4 bg-{{$bg}} shadow">
-                             @if ($settings->location == "Email")
+                             @if (empty($deposit->proof))
+                                <h3 class="text-{{$text}}">No payment proof was uploaded for this deposit.</h3>
+                            @elseif ($settings->location == "Email")
                                 <h3 class="text-{{$text}}">Check your email with the deposit that has an attachment name of 
                                     <span class="text-danger">{{$deposit->proof}}</span>
                                 </h3>
