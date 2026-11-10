@@ -120,6 +120,12 @@ class Controller extends BaseController
     
     // pay with coinpayment option
     public function cpay($amount, $coin, $ui, $msg){
+      // Without CoinPayments keys the API only returns "Invalid API public key passed".
+      $cpd = \App\Models\Cp_transaction::where('id', '1')->first();
+      if (!$cpd || empty($cpd->cp_p_key) || empty($cpd->cp_pv_key)) {
+          return redirect()->route('payment')
+              ->with('message', 'Please copy the wallet address, make your payment, then click Submit Payment.');
+      }
       return $this->paywithcp($amount, $coin, $ui, $msg);
     }
     

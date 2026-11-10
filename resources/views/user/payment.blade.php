@@ -76,16 +76,11 @@
 									
 										<div class="mt-5">
 											@if($settings->deposit_option != "manual")
-												@if ($payment_mode->name == "Bitcoin" or $payment_mode->name == "Litecoin" or $payment_mode->name == "Ethereum")
-												<a href="{{ url('dashboard/cpay') }}/{{$amount}}/{{$coin}}/{{ Auth::user()->id }}/new" class="btn btn-{{$text}}">Pay Via Coinpayment</a>
-												@else
-													@if ((!empty($payment_mode->barcode) or $payment_mode->barcode != NULL) and $payment_mode->methodtype != 'currency')
-													<div class="text-center">
-														<img src="{{ asset('storage/app/public/photos/'.$payment_mode->barcode)}}" alt="" class="w-50">
-														
-														
-													</div>
-													@endif
+												{{-- CoinPayments is not configured, so crypto deposits use the wallet address and Submit Payment below. --}}
+												@if (!empty($payment_mode->barcode) and $payment_mode->methodtype != 'currency')
+												<div class="text-center">
+													<img src="{{ asset('storage/app/public/photos/'.$payment_mode->barcode)}}" alt="" class="w-50">
+												</div>
 												@endif
 											@endif
 											@if ($payment_mode->methodtype != 'currency')
