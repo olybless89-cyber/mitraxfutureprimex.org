@@ -46,7 +46,7 @@
 											}
 										@endphp
 										<div>
-											<h4 class="text-{{$text}}">You are to make payment of <strong>{{$settings->currency}}{{number_format($amount)}}</strong> using your selected payment method. Screenshot and upload the proof of payment</h4>
+											<h4 class="text-{{$text}}">You are to make payment of <strong>{{$settings->currency}}{{number_format($amount)}}</strong> using your selected payment method. then click Submit Payment below once you have paid.</h4>
 											<h4>
 												@if (!empty($payment_mode->img_url))
 												<img src="{{$payment_mode->img_url}}" alt="" class="w-25" >
@@ -252,12 +252,8 @@
 										</div>
 										@if ($settings->deposit_option == "auto" and $payment_mode->defaultpay != 'yes')
 											<div>
-												<form method="post" action="{{route('savedeposit')}}" enctype="multipart/form-data">
+												<form method="post" action="{{route('savedeposit')}}">
 													@csrf
-													<div class="form-group">
-														<h5 class="text-{{$text}}">Upload Payment proof after payment.</h5>
-														<input type="file" name="proof" class="form-control col-lg-4 bg-{{$bg}} text-{{$text}}" required>
-													</div>
 													<input type="hidden" name="amount" value="{{$amount}}">
 													<input type="hidden" name="paymethd_method" value="{{$payment_mode->name}}">
 
@@ -269,12 +265,8 @@
 										@endif
 										@if($settings->deposit_option == "manual" and $payment_mode->name != "Paystack" and $payment_mode->name != "Stripe" and $payment_mode->name != "Paypal" and $title !="Complete Payment")
 											<div>
-												<form method="post" action="{{route('savedeposit')}}" enctype="multipart/form-data">
+												<form method="post" action="{{route('savedeposit')}}">
 													@csrf
-													<div class="form-group">
-														<h5 class="text-{{$text}}">Upload Payment proof after payment.</h5>
-														<input type="file" name="proof" class="form-control col-lg-4 bg-{{$bg}} text-{{$text}}" required>
-													</div>
 													<input type="hidden" name="amount" value="{{$amount}}">
 													<input type="hidden" name="paymethd_method" value="{{$payment_mode->name}}">
 

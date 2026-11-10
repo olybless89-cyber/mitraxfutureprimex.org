@@ -59,9 +59,11 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 											</td> 
 											<td>{{\Carbon\Carbon::parse($deposit->created_at)->toDayDateTimeString()}}</td> 
 											<td> 
+												@if($deposit->proof)
 												<a href="{{route('viewdepositimage',$deposit->id )}}" class="btn btn-{{$text}} btn-sm m-1" title="View payment screenshot">
 													<i class="fa fa-eye"></i>
 												</a>
+												@endif
 												<a href="{{ url('admin/dashboard/deldeposit') }}/{{$deposit->id}}" class="m-1 btn btn-danger btn-sm">Delete</a> 
 
 												@if($deposit->status !="Processed") 
